@@ -3,15 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pr_geo/pr_geo.dart';
 
 void main() {
-  test('Calculate Distance between coordinates', () {
+  test('Make sure that coordinates are parsed correctly', () {
     GeoCoordinate point1 = GeoCoordinate(
-      latitude: 0,
-      longitude: 35,
+      latitude: 37,
+      longitude: -562,
     );
-    GeoCoordinate point2 = GeoCoordinate(
-      latitude: 0,
-      longitude: 47,
-    );
-    print('Distance between points is: ${PR_Geo.distance(point1, point2)}');
+    print('Point latitude: ${point1.latitude},longitude: ${point1.longitude}');
   });
+  
 }

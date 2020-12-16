@@ -1,7 +1,7 @@
 name: pr_geo
-description: A library for measuring distance between lat and longitude coordinates using the method created by Me.
-version: 0.0.1
-author:
+description: A library for measuring distance between geographic coordinates using a method created by Me.
+version: 0.0.1+1
+author: Radamés J. Valentín Reyes
 homepage:
 
 environment:
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter

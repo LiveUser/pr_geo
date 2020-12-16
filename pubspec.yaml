@@ -1,6 +1,6 @@
 name: pr_geo
 description: A library for measuring distance between geographic coordinates using a method created by Me.
-version: 0.0.1+1
+version: 0.0.2+1
 author: Radamés J. Valentín Reyes
 homepage:
 

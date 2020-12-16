@@ -1,6 +1,7 @@
 library pr_geo;
-//Puerto Rico Geographic measurement system
+//Puerto Rico Geographic measurement system by Radamés J. Valentín Reyes
 import 'package:flutter/cupertino.dart';
+import 'dart:math';
 
 ///Saves the coordinates in an object
 class GeoCoordinate{
@@ -60,11 +61,49 @@ class GeoCoordinate{
   }
 }
 // ignore: camel_case_types
+///class that holds all the library methods
 class PR_Geo{
-  //Mean sea level in meters
+  ///Mean sea level in meters
   static const double SeaLevel = 6371146;
-  //Get distance between coordinates in meters
-  static double distance(GeoCoordinate coordinate1,GeoCoordinate coordinate2){
-
+  ///Convert coordinates
+  static Map<String,double> _toCoordinates({@required double angle,@required double altitude}){
+    double R = altitude + SeaLevel;
+    double circumference = 2 * pi * R;
+    double position = (angle / 360) * circumference;
+    return {
+      'x': position,
+      'y': R,
+    };
+  }
+  ///Measure distance on the plane
+  static double _2dDistance({@required Map<String,double> point1,@required Map<String,double> point2}){
+    double deltaX = point1['x'] - point2['x'];
+    double deltaY = point1['y'] - point2['y'];
+    //a^2 +b^2 = c^2
+    double distance = pow(deltaX, 2) + pow(deltaY, 2);
+    //Square root to get the distance
+    distance = sqrt(distance);
+    return distance;
+  }
+  ///Get distance between coordinates in meters
+  static double distance(GeoCoordinate coordinate1,GeoCoordinate coordinate2){   
+    double latitudeDistance = _2dDistance(point1: _toCoordinates(angle: coordinate1.latitude,altitude: coordinate1.altitude), point2: _toCoordinates(angle: coordinate2.latitude,altitude: coordinate2.altitude));
+    double longitudeDistance = _2dDistance(point1: _toCoordinates(angle: coordinate1.longitude, altitude: coordinate1.altitude), point2: _toCoordinates(angle: coordinate2.longitude, altitude: coordinate2.altitude));
+    double altitudeDistance = (coordinate2.altitude - coordinate1.altitude).abs();
+    //Subtract the complete vector if the delta of the angles is bigger than 180 degrees
+      //Do not do this for the latitude because it is always in a range of -90 to 90 degrees
+    double deltaLongitude = (coordinate1.longitude - coordinate2.longitude).abs();
+    //Calculate and subtract the complete vector to measure the distance from the other side of the globe
+    if(180 < deltaLongitude){
+      double completeVector = _2dDistance(point1: _toCoordinates(angle: 180, altitude: coordinate1.altitude), point2: _toCoordinates(angle: -180, altitude: coordinate2.altitude));
+      //print('Complete vector: $completeVector longitudeDistance: $longitudeDistance');
+      longitudeDistance = completeVector - longitudeDistance;
+    }
+    //Calculate the total distance by merging all of the vectors together
+      //Merge distances in the x,y and z axis
+    double absoluteDistance = pow(latitudeDistance, 2) + pow(longitudeDistance, 2) + pow(altitudeDistance, 2);
+    //find the square root
+    absoluteDistance = sqrt(absoluteDistance);
+    return absoluteDistance;
   }
 }

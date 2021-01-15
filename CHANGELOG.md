@@ -1,3 +1,6 @@
+## version 0.0.2+2
+* added import 'package:meta/meta.dart'; rather than importing material to use the @import keyword
+
 ## version 0.0.2+1
 
 - Forget about what version 0.0.1+1 says

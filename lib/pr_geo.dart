@@ -1,6 +1,6 @@
 library pr_geo;
 //Puerto Rico Geographic measurement system by Radamés J. Valentín Reyes
-import 'package:flutter/cupertino.dart';
+import 'package:meta/meta.dart';
 import 'dart:math';
 
 ///Saves the coordinates in an object

@@ -1,3 +1,6 @@
+## version 0.0.2+3
+* Added documentation on how the PR Geo method works
+
 ## version 0.0.2+2
 * added import 'package:meta/meta.dart'; rather than importing material to use the @import keyword
 

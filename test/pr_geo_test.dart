@@ -62,4 +62,20 @@ void main() {
     print('Noaa online tool says it should be 10966km');
     print('Total distance is: $totalDistance m');
   });
+  test('Coordinates with different altitude', (){
+    GeoCoordinate point1 = GeoCoordinate(
+      latitude: -45,
+      longitude: 180,
+      altitude: 100,
+    );
+    GeoCoordinate point2 = GeoCoordinate(
+      latitude: 22,
+      longitude: -100,
+      altitude: 500,
+    );
+    double totalDistance = PR_Geo.distance(point1, point2);
+    print("Calculated distance is: $totalDistance");
+    //http://cosinekitty.com/compass.html
+    print("The above referenced calculator sais the result should be 9655.224 km");
+  });
 }

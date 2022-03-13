@@ -1,6 +1,6 @@
 name: pr_geo
 description: A library for measuring distance between geographic coordinates using a method created by Me.
-version: 0.0.2+2
+version: 0.0.2+3
 author: Radamés J. Valentín Reyes
 homepage:
 
@@ -11,11 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
+  meta:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  meta:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

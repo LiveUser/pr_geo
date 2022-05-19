@@ -1,17 +1,16 @@
 library pr_geo;
 //Puerto Rico Geographic measurement system by Radamés J. Valentín Reyes
-import 'package:meta/meta.dart';
 import 'dart:math';
 
 ///Saves the coordinates in an object
 class GeoCoordinate{
   ///Latitude in decimal degrees
-  double latitude;
+  late double latitude;
   ///Longitude in decimal degrees
-  double longitude;
+  late double longitude;
   ///Height over the sea level
-  double altitude;
-  GeoCoordinate({@required double latitude,@required double longitude,double altitude = 0}){
+  late double altitude;
+  GeoCoordinate({required double latitude,required double longitude,double altitude = 0}){
     //Make longitude a positive value from 0 to 360 degrees
     if(longitude < 0){
       longitude = longitude.abs();
@@ -28,7 +27,7 @@ class GeoCoordinate{
       //Find the negative angle of this to place it within the -180 to 0 degrees
       longitude -= 360;
     }
-    //TODO: Make the latitude within the -90 to 90 degrees range
+    //Make the latitude within the -90 to 90 degrees range
       //Make the angle positive if it is negative so that I only have to work with positive angles and use the mod 360 on it to keep the numbers within range
     if(latitude < 0){
       latitude = latitude.abs();
@@ -57,7 +56,7 @@ class GeoCoordinate{
     }
     this.latitude = latitude;
     this.longitude = longitude;
-    this.altitude = altitude ?? 0;
+    this.altitude = altitude;
   }
 }
 // ignore: camel_case_types
@@ -66,7 +65,7 @@ class PR_Geo{
   ///Mean sea level in meters
   static const double SeaLevel = 6371146;
   ///Convert coordinates
-  static Map<String,double> _toCoordinates({@required double angle,@required double altitude}){
+  static Map<String,double> _toCoordinates({required double angle,required double altitude}){
     double R = altitude + SeaLevel;
     double circumference = 2 * pi * R;
     double position = (angle / 360) * circumference;
@@ -76,11 +75,11 @@ class PR_Geo{
     };
   }
   ///Measure distance on the plane
-  static double _2dDistance({@required Map<String,double> point1,@required Map<String,double> point2}){
-    double deltaX = point1['x'] - point2['x'];
-    double deltaY = point1['y'] - point2['y'];
+  static double _2dDistance({required Map<String,double> point1,required Map<String,double> point2}){
+    double deltaX = point1['x']! - point2['x']!;
+    double deltaY = point1['y']! - point2['y']!;
     //a^2 +b^2 = c^2
-    double distance = pow(deltaX, 2) + pow(deltaY, 2);
+    double distance = pow(deltaX, 2) + (pow(deltaY, 2) as double);
     //Square root to get the distance
     distance = sqrt(distance);
     return distance;
@@ -101,7 +100,7 @@ class PR_Geo{
     }
     //Calculate the total distance by merging all of the vectors together
       //Merge distances in the x,y and z axis
-    double absoluteDistance = pow(latitudeDistance, 2) + pow(longitudeDistance, 2) + pow(altitudeDistance, 2);
+    double absoluteDistance = pow(latitudeDistance, 2) + pow(longitudeDistance, 2) + (pow(altitudeDistance, 2) as double);
     //find the square root
     absoluteDistance = sqrt(absoluteDistance);
     return absoluteDistance;

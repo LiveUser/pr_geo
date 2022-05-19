@@ -1,6 +1,6 @@
 # PR_Geo
 
-A library that calculates Geo-Distance using the Puerto Rico Geographic Measurement Method created by Radamés J. Valentín Reyes.
+A library that calculates Geo-Distance using a method created by Radamés J. Valentín Reyes(I believe). It calculates distance using an equirectangular projection.
 
 Hecho en 🇵🇷 por Radamés J. Valentín Reyes.
 
@@ -64,8 +64,7 @@ Note: You can email me in case you find any bugs or incorrect results.  Because 
 ## This library's main purpose is to demonstrate that my mathematical method works, has real applications and can replace any previous library. Also that I solved an Integral without integrating and I'm really proud of it.
 
 # How does the method work?
-
- <a href="./documentation/PR_Geo.pdf">Click here tho see the PDF with the details on my mathematical method</a>
+ <a href="https://onedrive.live.com/embed?cid=36F676D77ED9AB2B&resid=36F676D77ED9AB2B%213841&authkey=AGPgQjCd1OvX6QM&em=2">Click here tho see the PDF with the details on my mathematical method</a>
 
 Note: The method has not yet been proven by a mathematician but I have tested it and compared it with the <a href="https://www.nhc.noaa.gov/gccalc.shtml">NOAA online tool distance</a> and have gotten results with a couple of meters of difference in distance. Also I don't know whether or not the method employed by the NOAA calculator is more precise than mine or not, also, I don't know which method they use and how it works.
 
